@@ -4,7 +4,9 @@ namespace NfqAkademija\WeatherBundle\Controller;
 
 use Cmfcmf\OpenWeatherMap;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Cmfcmf\OpenWeatherMap\Exception as OWMException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 
 class DefaultController extends Controller
 {
@@ -15,10 +17,12 @@ class DefaultController extends Controller
 
     /**
      * @Route("/city/{city}")
+     * @Route("/city/")
      */
-    public function indexAction($city)
+    public function indexAction($city="Vilnius")
     {
         $owm = new OpenWeatherMap();
+        $weather = [];
         try {
             $weather = $owm->getWeather($city, $this->units, $this->lang, $this->container->getParameter('weather_api'));
         } catch(OWMException $e) {
