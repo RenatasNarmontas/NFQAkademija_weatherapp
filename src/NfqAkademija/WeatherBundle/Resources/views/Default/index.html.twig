@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} First weathermap app!{% endblock %}
+
+{% block body %}
+    <h1>You've asked for: {{ city }}<br>
+    I've fetched information for "{{ cityNameDetected }}" in country "{{ cityCountryDetected }}"!</h1>
+    <h3>Today is: {{ weather|raw }}</h3>
+    <br><br>
+    Additional information:
+    <h5>Clouds: {{ cloudsValue }} ({{ cloudsDescription }})<br>
+    Humidity: {{ humidity }}<br>
+    Pressure: {{ pressure }}<br>
+    Wind speed: {{ windSpeed }}<br>
+    Wind direction: {{ windDirection }}<br>
+    Sun rise: {{ sunRise }}<br>
+    Sun set: {{ sunSet }}</h5>
+    <br><br><br>
+    Last updated: {{ lastUpdate }}
+{% endblock %}
