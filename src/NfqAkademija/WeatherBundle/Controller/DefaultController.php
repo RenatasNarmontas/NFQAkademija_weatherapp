@@ -6,6 +6,8 @@ use Cmfcmf\OpenWeatherMap;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Cmfcmf\OpenWeatherMap\Exception as OWMException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 
 class DefaultController extends Controller
@@ -16,35 +18,34 @@ class DefaultController extends Controller
     private $units = 'metric';
 
     /**
-     * @Route("/city/{city}")
-     * @Route("/city/")
+     * @Route("/city/{city}", defaults={"city" = "Vilnius"})
      */
-    public function indexAction($city="Vilnius")
+    public function indexAction($city='Vilnius')
     {
         $owm = new OpenWeatherMap();
         $weather = [];
         try {
             $weather = $owm->getWeather($city, $this->units, $this->lang, $this->container->getParameter('weather_api'));
         } catch(OWMException $e) {
-            echo 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
-        } catch(\Exception $e) {
-            echo 'General exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').';
+            throw new HttpException(400, 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').');
+        } catch(Exception $e) {
+            throw new HttpException(400, 'General exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').');
         }
 
         return $this->render('WeatherBundle:Default:index.html.twig', [
-            "city" => $city,
-            "cityNameDetected" => $weather->city->name,
-            "cityCountryDetected" => $weather->city->country,
-            "weather" => $weather->temperature,
-            "lastUpdate" => $weather->lastUpdate->format('Y-m-d H:i:s T'),
-            "cloudsValue" => $weather->clouds->getValue(),
-            "cloudsDescription" => $weather->clouds->getDescription(),
-            "humidity" => $weather->humidity,
-            "pressure" => $weather->pressure,
-            "windSpeed" => $weather->wind->speed,
-            "windDirection" => $weather->wind->direction,
-            "sunRise" => $weather->sun->rise->format('Y-m-d H:i:s T'),
-            "sunSet" => $weather->sun->set->format('Y-m-d H:i:s T'),
+            'city' => $city,
+            'cityNameDetected' => $weather->city->name,
+            'cityCountryDetected' => $weather->city->country,
+            'weather' => $weather->temperature,
+            'lastUpdate' => $weather->lastUpdate->format('Y-m-d H:i:s T'),
+            'cloudsValue' => $weather->clouds->getValue(),
+            'cloudsDescription' => $weather->clouds->getDescription(),
+            'humidity' => $weather->humidity,
+            'pressure' => $weather->pressure,
+            'windSpeed' => $weather->wind->speed,
+            'windDirection' => $weather->wind->direction,
+            'sunRise' => $weather->sun->rise->format('Y-m-d H:i:s T'),
+            'sunSet' => $weather->sun->set->format('Y-m-d H:i:s T'),
         ]);
     }
 }
