@@ -20,15 +20,15 @@ class DefaultController extends Controller
     /**
      * @Route("/city/{city}", defaults={"city" = "Vilnius"})
      */
-    public function indexAction($city='Vilnius')
+    public function indexAction($city = 'Vilnius')
     {
         $owm = new OpenWeatherMap();
-        $weather = [];
+        $weather = [ ];
         try {
             $weather = $owm->getWeather($city, $this->units, $this->lang, $this->container->getParameter('weather_api'));
-        } catch(OWMException $e) {
+        } catch (OWMException $e) {
             throw new HttpException(400, 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             throw new HttpException(400, 'General exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').');
         }
 
