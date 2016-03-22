@@ -10,7 +10,7 @@ class DefaultControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', 'http://localhost:8000/city/Vilnius');
+        $crawler = $client->request('GET', '/city/Vilnius');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
