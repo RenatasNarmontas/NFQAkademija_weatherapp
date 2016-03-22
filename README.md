@@ -3,6 +3,9 @@ Weather App
 
 ###### Author: Renatas Narmontas ######
 
+i[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/badges/build.png?b=master)](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/build-status/master)
 
 This application shows current temperature in selected city.
 
