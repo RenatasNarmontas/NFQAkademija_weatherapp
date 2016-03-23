@@ -6,6 +6,7 @@ Weather App
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/badges/build.png?b=master)](https://scrutinizer-ci.com/g/RenatasNarmontas/NFQAkademija_weatherapp/build-status/master)
+[![Build Status](https://travis-ci.org/RenatasNarmontas/NFQAkademija_weatherapp.svg?branch=master)](https://travis-ci.org/RenatasNarmontas/NFQAkademija_weatherapp)
 
 This application shows current temperature in selected city.
 
