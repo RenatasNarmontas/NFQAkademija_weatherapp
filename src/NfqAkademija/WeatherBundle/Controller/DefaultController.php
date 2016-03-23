@@ -9,7 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
-
 class DefaultController extends Controller
 {
     // Language of data
@@ -25,7 +24,8 @@ class DefaultController extends Controller
         $owm = new OpenWeatherMap();
         $weather = [ ];
         try {
-            $weather = $owm->getWeather($city, $this->units, $this->lang, $this->container->getParameter('weather_api'));
+            $weather = $owm->getWeather($city, $this->units, $this->lang,
+					$this->container->getParameter('weather_api'));
         } catch (OWMException $e) {
             throw new HttpException(400, 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').');
         } catch (Exception $e) {
