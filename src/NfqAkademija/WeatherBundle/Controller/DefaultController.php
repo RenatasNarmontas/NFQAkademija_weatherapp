@@ -24,15 +24,24 @@ class DefaultController extends Controller
         $owm = new OpenWeatherMap();
         $weather = [ ];
         try {
-            $weather = $owm->getWeather($city, $this->units, $this->lang,
-					$this->container->getParameter('weather_api'));
+            $weather = $owm->getWeather(
+                $city,
+                $this->units,
+                $this->lang,
+                $this->container->getParameter('weather_api')
+            );
         } catch (OWMException $e) {
-            throw new HttpException(400, 'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').');
+            throw new HttpException(
+                400,
+                'OpenWeatherMap exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').'
+            );
         } catch (Exception $e) {
             throw new HttpException(400, 'General exception: ' . $e->getMessage() . ' (Code ' . $e->getCode() . ').');
         }
 
-        return $this->render('WeatherBundle:Default:index.html.twig', [
+        return $this->render(
+            'WeatherBundle:Default:index.html.twig',
+            [
             'city' => $city,
             'cityNameDetected' => $weather->city->name,
             'cityCountryDetected' => $weather->city->country,
@@ -46,6 +55,7 @@ class DefaultController extends Controller
             'windDirection' => $weather->wind->direction,
             'sunRise' => $weather->sun->rise->format('Y-m-d H:i:s T'),
             'sunSet' => $weather->sun->set->format('Y-m-d H:i:s T'),
-        ]);
+            ]
+        );
     }
 }
